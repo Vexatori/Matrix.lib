@@ -68,28 +68,36 @@ namespace Matrix.lib
 
         public IntMatrixClass SumMatrix( IntMatrixClass temp )
         {
-            IntMatrixClass result = new IntMatrixClass( _rows, _columns );
-            for ( int i = 0; i < _columns * _rows; i++ )
+            if ( temp.Columns == this.Columns & temp.Rows == this.Rows )
             {
-                result.SetElementAt( i, this.GetElementAt( i ) + temp.GetElementAt( i ) );
-            }
+                IntMatrixClass result = new IntMatrixClass(_rows, _columns);
+                for(int i = 0; i < _columns * _rows; i++)
+                {
+                    result.SetElementAt(i, this.GetElementAt(i) + temp.GetElementAt(i));
+                }
 
-            return result;
+                return result;
+            }
+            else { return null; }
         }
 
         public IntMatrixClass MultiMatrix( IntMatrixClass temp )
         {
-            IntMatrixClass result = new IntMatrixClass( _rows, temp.Columns );
-            for ( int i = 0; i < result.Rows; i++ )
+            if ( this.Columns == temp.Rows )
             {
-                for ( int j = 0; j < result.Columns; j++ )
+                IntMatrixClass result = new IntMatrixClass( _rows, temp.Columns );
+                for ( int i = 0; i < result.Rows; i++ )
                 {
-                    int someSum = SumOfProducts( this.GetRow( i ), temp.GetColumn( j ) );
-                    result.SetElementAt( i, j, someSum );
+                    for ( int j = 0; j < result.Columns; j++ )
+                    {
+                        int someSum = SumOfProducts( this.GetRow( i ), temp.GetColumn( j ) );
+                        result.SetElementAt( i, j, someSum );
+                    }
                 }
-            }
 
-            return result;
+                return result;
+            }
+            else { return null; }
         }
 
         public int[] GetRow( int k )
