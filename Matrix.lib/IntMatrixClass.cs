@@ -78,7 +78,7 @@ namespace Matrix.lib
 
                 return result;
             }
-            else { return null; }
+            else { return new IntMatrixClass(_rows, _columns); }
         }
 
         public IntMatrixClass MultiMatrix( IntMatrixClass temp )
@@ -97,7 +97,7 @@ namespace Matrix.lib
 
                 return result;
             }
-            else { return null; }
+            else { return new IntMatrixClass( _rows, temp.Columns ); }
         }
 
         public int[] GetRow( int k )
